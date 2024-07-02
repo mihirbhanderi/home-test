@@ -593,3 +593,6 @@
     clip-path: polygon(var(--shape--blob-5));
   }
 }
+.card-wrapper.product-card-wrapper {
+  border: 1px solid red;
+}
