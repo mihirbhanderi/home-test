@@ -57,6 +57,7 @@
                 >
                   {%- for option in collection.sort_options -%}
                     {% unless option.value == 'best-selling' or option.value == 'title-ascending' %}
+                      {{ option.value-- }}
                     <option
                       value="{{ option.value | escape }}"
                       {% if option.value == sort_by %}
