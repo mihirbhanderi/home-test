@@ -56,10 +56,6 @@
                   aria-describedby="a11y-refresh-page-message"
                 >
                   {%- for option in collection.sort_options -%}
-                    {% assign r_escape = option.value | escape %}
-                    {{ r_escape }}---
-                    {% unless r_escape == 'best-selling' or r_escape == 'title-ascending' %}
-                      {{ option.value-- }}
                     <option
                       value="{{ option.value | escape }}"
                       {% if option.value == sort_by %}
@@ -68,7 +64,6 @@
                     >
                       {{ option.name | escape }}
                     </option>
-                    {% endunless %}
                   {%- endfor -%}
                 </select>
                 {% render 'icon-caret' %}
