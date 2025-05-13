@@ -56,7 +56,8 @@
                   aria-describedby="a11y-refresh-page-message"
                 >
                   {%- for option in collection.sort_options -%}
-                    {% unless option.value == 'best-selling' or option.value == 'title-ascending' %}
+                    {% assign r_escape = option.value | escape %}
+                    {% unless r_escape == 'best-selling' or r_escape == 'title-ascending' %}
                       {{ option.value-- }}
                     <option
                       value="{{ option.value | escape }}"
