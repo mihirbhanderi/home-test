@@ -57,6 +57,7 @@
                 >
                   {%- for option in collection.sort_options -%}
                     {% assign r_escape = option.value | escape %}
+                    {{ r_escape }}---
                     {% unless r_escape == 'best-selling' or r_escape == 'title-ascending' %}
                       {{ option.value-- }}
                     <option
