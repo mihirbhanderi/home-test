@@ -3454,3 +3454,6 @@ details-disclosure > details {
     --border-offset: 0px; /* Prevent the border from growing on buttons when this effect is on. */
   }
 }
+.facet-filters__sort option[value="best-selling"] {
+    display: none;
+}
