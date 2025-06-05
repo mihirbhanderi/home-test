@@ -1,6 +1,280 @@
+{% doc %}
+  @prompt
+    Create a marquee animation section with continuously scrolling text where each text segment is in a different block. The animation should loop seamlessly without stopping when text finishes.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-marquee-container-{{ ai_gen_id }} {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding }}px 0;
+  }
+
+  .ai-marquee-inner-{{ ai_gen_id }} {
+    display: flex;
+    width: max-content;
+    animation: ai-marquee-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
+  }
+
+  .ai-marquee-item-{{ ai_gen_id }} {
+    white-space: nowrap;
+    padding: 0 {{ block.settings.item_spacing }}px;
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    font-weight: {{ block.settings.text_weight }};
+    display: flex;
+    align-items: center;
+  }
+
+  .ai-marquee-item-{{ ai_gen_id }} svg {
+    width: {{ block.settings.text_size | times: 0.8 }}px;
+    height: {{ block.settings.text_size | times: 0.8 }}px;
+    margin: 0 {{ block.settings.item_spacing | divided_by: 2 }}px;
+  }
+
+  @keyframes ai-marquee-scroll-{{ ai_gen_id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-marquee-item-{{ ai_gen_id }} {
+      font-size: {{ block.settings.text_size_mobile }}px;
+    }
+    .ai-marquee-item-{{ ai_gen_id }} svg {
+      width: {{ block.settings.text_size_mobile | times: 0.8 }}px;
+      height: {{ block.settings.text_size_mobile | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-marquee-container-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-marquee-inner-{{ ai_gen_id }}">
+    {% for i in (1..5) %}
+      {% if block.settings.text_1 != blank %}
+        <div class="ai-marquee-item-{{ ai_gen_id }}">
+          {{ block.settings.text_1 }}
+          {% if block.settings.show_separator %}
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if block.settings.text_2 != blank %}
+        <div class="ai-marquee-item-{{ ai_gen_id }}">
+          {{ block.settings.text_2 }}
+          {% if block.settings.show_separator %}
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          {% endif %}
+        </div>
+      {% endif %}
+      
+      {% if block.settings.text_3 != blank %}
+        <div class="ai-marquee-item-{{ ai_gen_id }}">
+          {{ block.settings.text_3 }}
+          {% if block.settings.show_separator %}
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          {% endif %}
+        </div>
+      {% endif %}
+      
+      {% if block.settings.text_4 != blank %}
+        <div class="ai-marquee-item-{{ ai_gen_id }}">
+          {{ block.settings.text_4 }}
+          {% if block.settings.show_separator %}
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          {% endif %}
+        </div>
+      {% endif %}
+      
+      {% if block.settings.text_5 != blank %}
+        <div class="ai-marquee-item-{{ ai_gen_id }}">
+          {{ block.settings.text_5 }}
+          {% if block.settings.show_separator %}
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="12" r="4"/>
+            </svg>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  (function() {
+    const marqueeContainer = document.querySelector('.ai-marquee-container-{{ ai_gen_id }}');
+    const marqueeInner = document.querySelector('.ai-marquee-inner-{{ ai_gen_id }}');
+    
+    // Clone the content to ensure seamless looping
+    if (marqueeInner) {
+      const itemsWidth = marqueeInner.offsetWidth;
+      const containerWidth = marqueeContainer.offsetWidth;
+      
+      // If the content is shorter than the container, duplicate it more times
+      if (itemsWidth < containerWidth * 2) {
+        const clonedContent = marqueeInner.innerHTML;
+        marqueeInner.innerHTML = clonedContent + clonedContent;
+      }
+    }
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Marquee Text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text item 1",
+      "default": "Free shipping on all orders"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text item 2",
+      "default": "New collection available now"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text item 3",
+      "default": "Limited time offer"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Text item 4",
+      "default": "Use code SAVE20 for 20% off"
+    },
+    {
+      "type": "text",
+      "id": "text_5",
+      "label": "Text item 5",
+      "default": "Sign up for our newsletter"
+    },
+    {
+      "type": "header",
+      "content": "Style Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 12,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "text_size_mobile",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Text size on mobile",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_weight",
+      "label": "Text weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Space between items",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll speed (seconds per loop)",
+      "default": 20
+    },
+    {
+      "type": "checkbox",
+      "id": "show_separator",
+      "label": "Show dot separators",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Text"
+    }
+  ]
+}
 {% endschema %}
