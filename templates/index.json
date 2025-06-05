@@ -136,9 +136,9 @@
           "settings": {
             "text_1": "Free shipping on all orders",
             "text_2": "New collection available now",
-            "text_3": "Limited time offer",
-            "text_4": "Use code SAVE20 for 20% off",
-            "text_5": "Sign up for our newsletter",
+            "text_3": "",
+            "text_4": "",
+            "text_5": "",
             "background_color": "#000000",
             "text_color": "#ffffff",
             "text_size": 16,
