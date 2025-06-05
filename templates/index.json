@@ -92,11 +92,47 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "1749102793251befad": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_4ff0ceb_6QYBLD": {
+          "type": "ai_gen_block_4ff0ceb",
+          "settings": {
+            "message_1": "Free shipping on all orders over $50",
+            "link_1": "",
+            "message_2": "New collection just launched",
+            "link_2": "",
+            "message_3": "Use code WELCOME10 for 10% off",
+            "link_3": "",
+            "message_4": "",
+            "link_4": "",
+            "divider": "★",
+            "background_color": "#000000",
+            "text_color": "#FFFFFF",
+            "divider_color": "#FFFFFF",
+            "font_size": 16,
+            "font_size_mobile": 14,
+            "font_weight": "400",
+            "show_underline": false,
+            "scroll_speed": 20,
+            "pause_on_hover": true,
+            "padding": 10,
+            "spacing": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_4ff0ceb_6QYBLD"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
-    "1747115509b109c291"
+    "1747115509b109c291",
+    "1749102793251befad"
   ]
 }
