@@ -109,8 +109,8 @@
             "link_4": "",
             "divider": "★",
             "background_color": "#000000",
-            "text_color": "#FFFFFF",
-            "divider_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "divider_color": "#ffffff",
             "font_size": 16,
             "font_size_mobile": 14,
             "font_weight": "400",
@@ -127,12 +127,42 @@
         "ai_gen_block_4ff0ceb_6QYBLD"
       ],
       "settings": {}
+    },
+    "1749103269b2f76b13": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5457100_rG9a7D": {
+          "type": "ai_gen_block_5457100",
+          "settings": {
+            "text_1": "Free shipping on all orders",
+            "text_2": "New collection available now",
+            "text_3": "Limited time offer",
+            "text_4": "Use code SAVE20 for 20% off",
+            "text_5": "Sign up for our newsletter",
+            "background_color": "#000000",
+            "text_color": "#ffffff",
+            "text_size": 16,
+            "text_size_mobile": 14,
+            "text_weight": "400",
+            "padding": 10,
+            "item_spacing": 30,
+            "scroll_speed": 20,
+            "show_separator": true
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5457100_rG9a7D"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "image_banner",
     "featured_collection",
     "1747115509b109c291",
-    "1749102793251befad"
+    "1749102793251befad",
+    "1749103269b2f76b13"
   ]
 }
