@@ -99,7 +99,7 @@
                     </h2>
                   </a>
                 </div>
-              {% if product.metafields.custom.color_variants != blank %}
+              {% comment %}{% if product.metafields.custom.color_variants != blank %}
   <div class="color-variants">
     {% for variant_product in product.metafields.custom.color_variants.value %}
       <a href="{{ variant_product.url }}">
@@ -107,7 +107,33 @@
       </a>
     {% endfor %}
   </div>
+{% endif %}{% endcomment %}
+
+              {% assign group_tag = '' %}
+
+{%- for tag in product.tags -%}
+  {%- if tag contains 'group_' -%}
+    {% assign group_tag = tag %}
+    {% break %}
+  {%- endif -%}
+{%- endfor -%}
+
+{% if group_tag != '' %}
+  <div class="color-variants">
+    <p>Other Colors:</p>
+    <div style="display: flex; gap: 10px;">
+      {% assign all_products = collections.all.products %}
+      {% for other_product in all_products %}
+        {% if other_product.tags contains group_tag and other_product.id != product.id %}
+          <a href="{{ other_product.url }}">
+            <img src="{{ other_product.featured_image | image_url: width: 100 }}" alt="{{ other_product.title }}" style="border: 1px solid #ccc; border-radius: 4px;" />
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 {% endif %}
+
 
               {%- when 'price' -%}
                 <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
